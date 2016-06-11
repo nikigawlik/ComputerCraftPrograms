@@ -210,7 +210,7 @@ for line = 0,(cw-1) do
     gox(x*delta)
     
     turtle.turnRight()
-    gox(line*4)
+    gox(line*delta)
     dump()
     turtle.turnLeft()
     turtle.turnLeft()
