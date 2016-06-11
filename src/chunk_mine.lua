@@ -196,17 +196,17 @@ cw = 2
 
 for line = 1,cw do
   gox(line*4)
-  turtle.left()
+  turtle.turnLeft()
   for x = 1,cw do
     gox(4)
     shaft()
   end
-  turtle.right()
-  turtle.right()
+  turtle.turnRight()
+  turtle.turnRight()
   gox(4*cw)
-  turtle.right()
+  turtle.turnRight()
   gox(line*4)
   dump()
-  turtle.left()
-  turtle.left()
+  turtle.turnLeft()
+  turtle.turnLeft()
 end
