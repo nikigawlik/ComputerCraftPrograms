@@ -1,4 +1,4 @@
-names = {"automine", "turtle_utils" }
+names = {"automine", "turtle_utils, chunk_mine" }
 
 for i, name in ipairs(names) do
   shell.run("delete", name)
