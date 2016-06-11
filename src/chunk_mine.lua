@@ -216,4 +216,4 @@ function shaft()
   end
 end
 
-shaft()
+cleanInv()
