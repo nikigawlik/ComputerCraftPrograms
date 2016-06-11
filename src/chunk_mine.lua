@@ -199,7 +199,7 @@ end
 function shaft()
   depth = 0
   
-  while not bedrockDown() or depth > maxdepth do
+  while not (bedrockDown() or depth > maxdepth) do
     if turtle.getFuelLevel() < 100 then
       refuel()
     end
