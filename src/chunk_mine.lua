@@ -110,6 +110,9 @@ end
 
 function gox(len)
   for i=1,len do
+    while turtle.detect() do
+      turtle.dig()
+    end
     turtle.forward()
   end
 end
@@ -193,20 +196,23 @@ function shaft()
 end
 
 cw = 2
+delta = 3
 
 for line = 0,(cw-1) do
-  gox(line*4)
-  turtle.turnLeft()
   for x = 0,(cw-1) do
-    gox(4)
-    shaft()
+    gox(line*delta)
+    turtle.turnLeft()
+    
+    gox(x*delta)
+    shaft()    
+    turtle.turnRight()
+    turtle.turnRight()
+    gox(x*delta)
+    
+    turtle.turnRight()
+    gox(line*4)
+    dump()
+    turtle.turnLeft()
+    turtle.turnLeft()
   end
-  turtle.turnRight()
-  turtle.turnRight()
-  gox(4*cw)
-  turtle.turnRight()
-  gox(line*4)
-  dump()
-  turtle.turnLeft()
-  turtle.turnLeft()
 end
