@@ -194,10 +194,10 @@ end
 
 cw = 2
 
-for line = 1,cw do
+for line = 0,(cw-1) do
   gox(line*4)
   turtle.turnLeft()
-  for x = 1,cw do
+  for x = 0,(cw-1) do
     gox(4)
     shaft()
   end
