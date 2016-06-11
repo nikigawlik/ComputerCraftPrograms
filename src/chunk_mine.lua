@@ -108,6 +108,12 @@ function bedrockDown()
   return data.name == "minecraft:bedrock"
 end
 
+function gox(len)
+  for i=1,len do
+    turtle.forward()
+  end
+end
+
 
 function recMine()
   for i=1,4 do 
@@ -163,14 +169,9 @@ function mineLoop(length, seperation)
 end 
 
 function dump()
-  local success, data = turtle.inspectDown()
-  if data.name == "minecraft:chest" then
-    for i=1,16 do 
-      turtle.select(i)
-      if not turtle.refuel(0) then
-        turtle.dropDown()
-      end
-    end
+  for i=2,16 do 
+    turtle.select(i)
+    turtle.drop()
   end
 end
 
@@ -219,4 +220,21 @@ function shaft()
   end
 end
 
-cleanInv()
+cw = 2
+
+for line = 1,cw do
+  gox(line*4)
+  turtle.left()
+  for x = 1,cw do
+    gox(4)
+    shaft()
+  end
+  turtle.right()
+  turtle.right()
+  gox(4*cw)
+  turtle.right()
+  gox(line*4)
+  dump()
+  turtle.left()
+  turtle.left()
+end
