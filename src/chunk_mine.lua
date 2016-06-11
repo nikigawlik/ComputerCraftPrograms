@@ -139,34 +139,6 @@ function recMine()
   end
 end
 
-function mineLoop(length, seperation)
-  print("check fuel level...")
-
-  while turtle.getFuelLevel() < length*6 do 
-    turtle.refuel(8)
-    turtle.select((turtle.getSelectedSlot()-1) % 16 + 1)
-  end
-  
-  print("fuel level OK: " .. turtle.getFuelLevel())
-  
-  for i=1,length do 
-    carefulDig()
-    turtle.forward()
-    recMine()
-  end
-  turtle.turnRight()
-  for i=1,seperation do
-    carefulDig()
-    turtle.forward()
-    recMine()
-  end
-  turtle.turnRight()
-  for i=1,length do
-    carefulDig()
-    turtle.forward()
-    recMine()
-  end
-end 
 
 function dump()
   for i=2,16 do 
