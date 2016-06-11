@@ -1,9 +1,8 @@
 ores = {}
-length = 50
-sep = 4
-times = 5
 
-maxdepth = 4
+maxdepth = 128
+cw = 4
+delta = 3
 
 time = os.clock()
 
@@ -195,8 +194,6 @@ function shaft()
   end
 end
 
-cw = 2
-delta = 3
 
 for line = 0,(cw-1) do
   for x = 0,(cw-1) do
