@@ -187,7 +187,7 @@ end
 
 function cleanInv()
   for i=2,16 do
-    if turtle.getItemCount() > 0 then
+    if turtle.getItemCount(i) > 0 then
       local item = turtle.getItemDetail(i)
       if not isOre(item.name) then
         turtle.dropDown()
