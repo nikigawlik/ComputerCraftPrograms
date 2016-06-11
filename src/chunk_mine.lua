@@ -197,7 +197,6 @@ function cleanInv()
     end
   end
   turtle.select(1)
-  turtle.asdf()
 end
 
 function shaft()
