@@ -191,6 +191,7 @@ function cleanInv()
       local item = turtle.getItemDetail(i)
       if not isOre(item.name) then
         turtle.dropDown()
+        print("not ore: " .. item.name)
       end
     end
   end
