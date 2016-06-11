@@ -1,0 +1,1 @@
+shell.run("github", "nilsgawlik/ComputerCraftPrograms/master/src/github_import.lua", "github_import")
