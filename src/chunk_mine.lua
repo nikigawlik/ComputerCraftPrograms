@@ -190,11 +190,13 @@ function cleanInv()
     if turtle.getItemCount(i) > 0 then
       local item = turtle.getItemDetail(i)
       if not isOre(item.name) then
+        turtle.select(i)
         turtle.dropDown()
         print("not ore: " .. item.name)
       end
     end
   end
+  turtle.select(1)
 end
 
 function shaft()
