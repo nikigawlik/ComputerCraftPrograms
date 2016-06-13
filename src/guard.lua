@@ -49,8 +49,8 @@ end
 
 
 while running do
-  checkAndRefuel()
-  analyzeAndAct()
   turtle.attack()
   move()
+  checkAndRefuel()
+  analyzeAndAct()
 end
