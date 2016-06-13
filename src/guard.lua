@@ -2,11 +2,16 @@
 function checkAndRefuel()
   if turtle.getFuelLevel() < 10 then
     print("searching for fuel...")
-    for i = 1,16 do
+    local i = 1
+    while true do
       turtle.select(i)
       if turtle.refuel(0) then
         turtle.refuel(32)
         break
+      end
+      i = i + 1
+      if i > 16 then 
+        i = 1
       end
     end
     print("done.")
