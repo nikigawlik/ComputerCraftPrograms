@@ -1,4 +1,6 @@
 
+running = true
+
 function checkAndRefuel()
   if turtle.getFuelLevel() < 10 then
     print("searching for fuel...")
@@ -26,6 +28,8 @@ function analyzeAndAct()
         turtle.turnRight()
       elseif item.metadata == 14 then
         turtle.turnLeft()
+      elseif item.metadata == 15 then
+        running = false
       end
     end
   end
@@ -43,7 +47,8 @@ function move()
   end
 end
 
-while true do
+
+while running do
   checkAndRefuel()
   analyzeAndAct()
   turtle.attack()
