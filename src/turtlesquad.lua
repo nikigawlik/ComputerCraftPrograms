@@ -33,6 +33,7 @@ function placeCopyReboot()
   turtle.digDown()
   turtle.carefulBack()
   turtle.selectItem("minecraft:coal")
+  print(coalAmount)
   turtle.dropDown(coalAmount)
   inst.reboot()
 end
@@ -40,17 +41,21 @@ end
 goingForw = true
 
 for y=1,w do
-  for x=1,h do
+  for x=1,h-1 do
     placeCopyReboot()
     turtle.mF(dx)
   end
+  
+  placeCopyReboot()
+    
   if goingForw then
     turtle.turnLeft()
-    turtle.mF(1)
+    turtle.mF(dy)
     turtle.turnLeft()
   else
     turtle.turnRight()
-    turtle.mF(1)
+    turtle.mF(dy)
     turtle.turnRight()
   end
+  goingForw = not goingForw
 end
