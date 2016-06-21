@@ -33,8 +33,7 @@ function placeCopyReboot()
   turtle.digDown()
   turtle.carefulBack()
   turtle.selectItem("minecraft:coal")
-  print(coalAmount)
-  turtle.dropDown(coalAmount)
+  turtle.dropDown(coalAmount+0)
   inst.reboot()
 end
 
