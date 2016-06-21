@@ -19,7 +19,7 @@ coalAmount = args[5]
 function placeCopyReboot()
   --  TODO
   turtle.selectItem("ComputerCraft:CC-TurtleExpanded")
-  turtle.place()
+  turtle.carefulPlaceDown()
   turtle.mF(1)
   turtle.selectItem("ComputerCraft:CC-Peripheral")
   turtle.carefulPlaceDown()
