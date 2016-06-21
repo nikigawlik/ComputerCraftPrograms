@@ -5,9 +5,9 @@ shell.run("turtle_utils")
 -- turtle faces "negative y" at beginning 
 -- in relation to x and y below
 
-if #args ~= 4 then
+if #args ~= 5 then
   print("usage: turtlesquad w h dx dy coalAmount")
-  exit()
+  return
 end
 
 w = args[1]
