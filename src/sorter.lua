@@ -112,13 +112,14 @@ function main()
   addPos("charcoal", 19)
   
   while true do
-    turtle.select(1)
+    turtle.checkAndRefuel(50, 1)
+    turtle.select(2)
     repeat until turtle.suck()
-    for i=2,16 do 
+    for i=3,16 do 
       turtle.select(i)
       turtle.suck()
     end
-    for i=1,16 do 
+    for i=2,16 do 
       turtle.select(i)
       if turtle.getItemCount() ~= 0 then
         goto(getpos())
