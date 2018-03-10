@@ -19,6 +19,7 @@ local response = http.get(host .. path)
 
 if not response then
     print("ERR: http request failed!")
+    return
 end
 
 local file = fs.open(args[1],"w")

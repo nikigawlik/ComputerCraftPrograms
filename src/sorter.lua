@@ -49,7 +49,7 @@ function goto(id)
   local toh = math.floor(id / (length*2))
   local tod = (id % 2)*2
   
-  --print("go to " .. id .. " (" .. tox ", " .. toh .. ", " .. tod .. ")")
+  print("go to " .. id .. " (" .. tox ", " .. toh .. ", " .. tod .. ")")
   
   while tox > x do
     turn(1)

@@ -31,8 +31,18 @@ end
 function addOre(blockname)
   ores[blockname] = true
 end
+
 function isOre(blockname)
-  return ores[blockname] ~= nil
+  if blockname == nil then 
+    return false
+  end
+  if ores[blockname] ~= nil then
+    return true
+  end
+  if string.find(blockname, "ore") ~= nil or string.find(blockname, "Ore") ~= nil then
+    return true
+  end
+  return false
 end
 
 --addOre("minecraft:iron_ore")
@@ -85,6 +95,8 @@ addOre("BiomesOPlenty:gemOre")
 addOre("IC2:blockOreLead")
 addOre("NetherOres:tile.netherores.ore.1")
 addOre("DraconicEvolution:draconiumOre")
+addOre("lipVulpes:lipVulpesore0")
+
 
 function oreFront()
   print("checking front")

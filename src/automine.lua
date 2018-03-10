@@ -1,7 +1,14 @@
+args = {...}
+
+if #args ~= 3 then
+  print("please provide three arguments")
+  return
+end
+
 ores = {}
-length = 50
-sep = 4
-times = 5
+length = args[1]-- 50
+sep = args[2] -- 4
+times = args[3] -- 5
 
 time = os.clock()
 
@@ -17,86 +24,43 @@ function load()
   return cont
 end
 
-function carefulDig()
-    repeat until not turtle.dig()
-end
-function carefulDigUp()
-    repeat until not turtle.digUp()
-end
-function carefulDigDown()
-    turtle.digDown()
-end
-
 function addOre(blockname)
   ores[blockname] = true
 end
+
 function isOre(blockname)
-  return ores[blockname] ~= nil
+  if blockname == nil then 
+    return false
+  end
+  if ores[blockname] ~= nil then
+    return true
+  end
+  if string.find(blockname, "ore") ~= nil or string.find(blockname, "Ore") ~= nil then
+    return true
+  end
+  return false
 end
 
---addOre("minecraft:iron_ore")
---addOre("minecraft:coal_ore")
---addOre("minecraft:lapis_ore")
---addOre("minecraft:diamond_ore")
---addOre("minecraft:gold_ore")
---addOre("minecraft:redstone_ore")
---addOre("minecraft:emerald_ore")
-
-addOre("denseores:block0")
-addOre("TConstruct:SearedBrick")
-addOre("ProjRed|Exploration:projectred.exploration.ore")
-addOre("BiomesOPlenty:gemOre")
-addOre("Forestry:resources")
-addOre("IC2:blockOreCopper")
-addOre("IC2:blockOreTin")
-addOre("IC2:blockOreUran")
-addOre("IC2:blockOreLead")
-addOre("DraconicEvolution:draconiumOre")
-addOre("ImmersiveEngineering:ore")
-addOre("rftools:dimensionalShardBlock")
-addOre("ImmersiveEngineering:ore")
-addOre("BiomesOPlenty:gemOre")
-addOre("BigReactors:YelloriteOre")
-addOre("Forestry:resources")
-addOre("minecraft:redstone_ore")
-addOre("ProjRed|Exploration:projectred.exploration.ore")
-addOre("Railcraft:ore")
-addOre("TConstruct:SearedBrick")
-addOre("TConstruct:GravelOre")
-addOre("Thaumcraft:blockCustomOre")
-addOre("ThermalFoundation:Ore")
-addOre("aobd:oreSteel")
-addOre("aobd:oreIridium")
-addOre("appliedenergistics2:tile.OreQuartzCharged")
-addOre("appliedenergistics2:tile.OreQuartz")
-addOre("denseores:block0")
-addOre("harvestcraft:salt")
-addOre("minecraft:emerald_ore")
-addOre("minecraft:quartz_ore")
-addOre("BiomesOPlenty:biomeBlock")
-addOre("minecraft:gold_ore")
+addOre("minecraft:iron_ore")
 addOre("minecraft:coal_ore")
 addOre("minecraft:lapis_ore")
 addOre("minecraft:diamond_ore")
-addOre("BiomesOPlenty:gemOre")
-addOre("minecraft:iron_ore")
-addOre("BiomesOPlenty:gemOre")
-addOre("IC2:blockOreLead")
-addOre("NetherOres:tile.netherores.ore.1")
-addOre("DraconicEvolution:draconiumOre")
+addOre("minecraft:gold_ore")
+addOre("minecraft:redstone_ore")
+addOre("minecraft:emerald_ore")
 
 function oreFront()
-  print("checking front")
+  -- print("checking front")
   local success, data = turtle.inspect()
   return isOre(data.name)
 end
 function oreUp()
-  print("checking up")
+  -- print("checking up")
   local success, data = turtle.inspectUp()
   return isOre(data.name)
 end
 function oreDown()
-  print("checking down")
+  -- print("checking down")
   local success, data = turtle.inspectDown()
   return isOre(data.name)
 end
@@ -104,24 +68,24 @@ end
 function recMine()
   for i=1,4 do 
     if oreFront() then
-      carefulDig()
-      turtle.forward()
+      turtle.carefulDig()
+      turtle.carefulForward()
       recMine()
-      turtle.back()
+      turtle.carefulBack()
     end
     turtle.turnLeft() 
   end
   if oreUp() then
-    carefulDigUp()
-    turtle.up()
+    turtle.carefulDigUp()
+    turtle.carefulUp()
     recMine()
     turtle.down()
   end
   if oreDown() then
-    carefulDigDown()
+    turtle.carefulDigDown()
     turtle.down()
     recMine()
-    turtle.up()
+    turtle.carefulUp()
   end
 end
 
@@ -136,20 +100,23 @@ function mineLoop(length, seperation)
   print("fuel level OK: " .. turtle.getFuelLevel())
   
   for i=1,length do 
-    carefulDig()
-    turtle.forward()
+    turtle.carefulDig()
+    turtle.carefulForward()
+    turtle.carefulDigUp()
     recMine()
   end
   turtle.turnRight()
   for i=1,seperation do
-    carefulDig()
-    turtle.forward()
+    turtle.carefulDig()
+    turtle.carefulForward()
+    turtle.carefulDigUp()
     recMine()
   end
   turtle.turnRight()
   for i=1,length do
-    carefulDig()
-    turtle.forward()
+    turtle.carefulDig()
+    turtle.carefulForward()
+    turtle.carefulDigUp()
     recMine()
   end
 end 
@@ -157,10 +124,15 @@ end
 function dump()
   local success, data = turtle.inspectDown()
   if data.name == "minecraft:chest" then
-    for i=1,16 do 
-      turtle.select(i)
-      if not turtle.refuel(0) then
-        turtle.dropDown()
+    turtle.dumpDown(3, 16)
+  else
+    print("looking for chest")
+    while true do
+      if turtle.selectItem("chest") then
+        turtle.carefulDigDown()
+        turtle.placeDown()
+        turtle.dumpDown(3, 16)
+        break
       end
     end
   end
@@ -176,7 +148,8 @@ for i=1,times do
   mineLoop(length, sep)  
   turtle.turnLeft()
   for i= 1,sep do 
-    turtle.forward()
+    turtle.carefulForward()
+    turtle.carefulDigUp()
   end
   turtle.turnLeft()
   printTime()
