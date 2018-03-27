@@ -77,7 +77,7 @@ function cycle()
       turtle.select(saplingSlot)
       local data = turtle.getItemDetail()
       local count = turtle.getItemCount()
-      local isSap = data.name == "minecraft:sapling" and data.damage == 1
+      local isSap = count > 0 and data.name == "minecraft:sapling" and data.damage == 1
       if count > 4 and isSap then
         break
       elseif not isSap then
