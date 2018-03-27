@@ -2,9 +2,21 @@ local args = {...}
 local w = tonumber(args[1])
 local h = tonumber(args[2])
 local floors = tonumber(args[3])
-local block = "cobblestone"
 local floorDif = args [4] or 4
 local floorFuel = w * h * 2
+
+local block = nil
+if args[5] then
+  block = args[5]
+else 
+  local item = turtle.getItemDetail() 
+  if item then
+    block = item.name
+  else
+    turtle.select(1)
+    print("please specifiy block name or put block in slot 1")
+  end
+end
 
 local inverse = false
 
