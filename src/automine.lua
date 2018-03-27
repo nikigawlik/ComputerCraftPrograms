@@ -92,10 +92,7 @@ end
 function mineLoop(length, seperation)
   print("check fuel level...")
 
-  while turtle.getFuelLevel() < length*6 do 
-    turtle.refuel(8)
-    turtle.select((turtle.getSelectedSlot()-1) % 16 + 1)
-  end
+  repeat until turtle.checkAndRefuel(length * 12, 2)
   
   print("fuel level OK: " .. turtle.getFuelLevel())
   
