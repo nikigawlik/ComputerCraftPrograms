@@ -1,11 +1,11 @@
 -- usage: getfile name
 
 -- run this line fo initial setup: 
--- local file = fs.open("getfile","w") file.write(http.get("http://192.168.1.112:8000/getfile.lua").readAll()) file.close()
+-- local file = fs.open("getfile","w") file.write(http.get("http://localhost:8000/getfile.lua").readAll()) file.close()
 
 local args = { ... }
 
-local host = "http://192.168.1.112:8000/" -- dont forget final backslash
+local host = "http://localhost:8000/" -- dont forget final backslash
 local path = args[1] .. ".lua"
 
 print("fetching " .. path)
