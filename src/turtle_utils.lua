@@ -9,7 +9,10 @@ turtle.y = 0
 turtle.z = 0
 turtle.facing = 1
 
-function turtle.fToX(f) 
+-- does turtle destroy blocks to get somewhere
+turtle.destructive = true
+
+function turtle.fToX(f)
   f = f % 4
   if f == 0 then 
     return 1
@@ -139,7 +142,9 @@ function turtle.carefulForward()
       return false
     end
     turtle.attack()
-    turtle.dig()
+    if turtle.destructive then 
+      turtle.dig()
+    end
   end
 
   turtle.x = turtle.x + turtle.fToX(turtle.facing)
@@ -168,7 +173,9 @@ function turtle.carefulUp()
       return false
     end
     turtle.attackUp()
-    turtle.digUp()
+    if turtle.destructive then 
+      turtle.digUp()
+    end
   end
 
   turtle.z = turtle.z + 1
@@ -183,7 +190,9 @@ function turtle.carefulDown()
       return false
     end
     turtle.attackDown()
-    turtle.digDown()
+    if turtle.destructive then 
+      turtle.digDown()
+    end
   end
 
   turtle.z = turtle.z - 1
@@ -253,4 +262,19 @@ function turtle.isFull()
     end
   end
   return true
+end
+
+function turtle.isEmpty(slot)
+  slot = slot or 1
+  for i=slot,16 do
+    if turtle.getItemCount(i) ~= 0 then
+      return false
+    end
+  end
+  return true
+end
+
+function turtle.setDestructive(dest) 
+  dest = dest or true
+  turtle.destructive = dest
 end
