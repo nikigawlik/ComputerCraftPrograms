@@ -1,0 +1,10 @@
+# I am a comment
+# 1a is input
+# 2a is overflow
+1b pickaxe, axe, shovel, sword, shears, hoe, chisel
+2b ore
+2c redstone, diamond, lapis, ingot, coal
+2d crystal, multimaterial
+3a cobble, stone
+3b wood, log, planks, ladder, stick
+3c gravel, dirt, sand
