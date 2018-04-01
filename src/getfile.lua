@@ -6,7 +6,8 @@
 local args = { ... }
 
 local host = "http://localhost:8000/" -- dont forget final backslash
-local path = args[1] .. ".lua"
+local ext = args[2] or "lua"
+local path = args[1] .. "." .. ext
 
 print("fetching " .. path)
 
